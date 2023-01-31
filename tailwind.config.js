@@ -7,6 +7,9 @@ module.exports = {
     fontFamily: {
       "sans": ['"IBM Plex Sans JP"', "sans-serif"],
       "serif": ['"Playfair Display"', "serif"],
+    },
+    screens: {
+      pc: "1024px",
     }
   },
   plugins: [],

@@ -51,6 +51,7 @@ export default function App() {
       if (!incorrect.includes(answeredQuestion)) {
         setIncorrect((incorrect) => [...incorrect, answeredQuestion]);
       }
+      setAnswer("");
     }
   }, [answer, answeredQuestion, questions, started, timer, timerId, totalQuestion])
   return (
@@ -58,13 +59,13 @@ export default function App() {
       <main className="h-full font-sans bg-black text-white">
         <div className="h-full grid place-items-center">
           <div className={`flex-col gap-16 items-center ${started ? "hidden":"flex"}`}>
-            <section className="text-8xl">英単語タイピング</section>
+            <section className="text-7xl pc:text-8xl text-center whitespace-nowrap">英単語<wbr />タイピング</section>
             <div>
               <button className="bg-green-500 px-12 py-6 text-4xl rounded-md hover:bg-green-600" onClick={start} ref={startRef}>スタート</button>
             </div>
           </div>
           <div className={`${started ? "flex":"hidden"} flex-col gap-12 items-center`}>
-            <section className="flex justify-between w-full">
+            <section className="flex justify-between w-4/5 pc:w-full">
               <p className="text-xl">問題数: {answeredQuestion}/{totalQuestion}</p>
               <p className="text-xl">タイム: {timer}</p>
             </section>
@@ -72,8 +73,8 @@ export default function App() {
               <p className="text-6xl text-center">下の文字を打ち込んでください</p>
               <p className="text-4xl text-center font-serif">{questions[answeredQuestion]}</p>
             </section>
-            <form onSubmit={submit}>
-              <input className="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 text-4xl px-4 py-2 rounded-md border border-white focus:border-2 font-serif" type="text" autoComplete="off" value={answer} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)} ref={inputRef} />
+            <form onSubmit={submit} className="w-4/5 pc:w-full">
+              <input className="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 text-4xl px-4 py-2 rounded-md border border-white focus:border-2 font-serif w-full" type="text" autoComplete="off" value={answer} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)} ref={inputRef} />
             </form>
             <p>{correctOrNot === null ? "ここに正誤判定が表示されます":correctOrNot ? "正解":"間違い"}</p>
           </div>
