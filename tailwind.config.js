@@ -7,7 +7,6 @@ module.exports = {
     fontFamily: {
       "sans": ['"IBM Plex Sans JP"', "sans-serif"],
       "serif": ['"Playfair Display"', "serif"],
-      "inputserif": ['"Noto Serif Khojki"', '"Playfair Display"', "serif"],
     }
   },
   plugins: [],

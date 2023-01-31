@@ -73,7 +73,7 @@ export default function App() {
               <p className="text-4xl text-center font-serif">{questions[answeredQuestion]}</p>
             </section>
             <form onSubmit={submit}>
-              <input className="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 text-4xl px-4 py-2 rounded-md border border-white focus:border-2 font-inputserif" type="text" autoComplete="off" value={answer} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)} ref={inputRef} />
+              <input className="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 text-4xl px-4 py-2 rounded-md border border-white focus:border-2 font-serif" type="text" autoComplete="off" value={answer} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)} ref={inputRef} />
             </form>
             <p>{correctOrNot === null ? "ここに正誤判定が表示されます":correctOrNot ? "正解":"間違い"}</p>
           </div>
