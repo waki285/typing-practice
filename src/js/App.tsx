@@ -1,6 +1,18 @@
 import React, { useEffect, useState, useRef, memo, useCallback } from "react";
 import { MobileView, BrowserView } from "react-device-detect";
 import randomWords from "random-words";
+import { AdMaxSwitch } from "./components/AdMax";
+
+const UeAd = memo(() => {
+  return (
+    <AdMaxSwitch id="ebfd32a946517240984de77e3c4c53da" className="fixed top-8 -translate-x-1/2 left-1/2" />
+  )
+});
+const SitaAd = memo(() => {
+  return (
+    <AdMaxSwitch id="cfa178e5ac7ae0e7732ca2b7eedb35e9" className="fixed bottom-8 -translate-x-1/2 left-1/2" />
+  )
+});
 
 export default function App() {
   const [started, setStarted] = useState(false);
@@ -40,11 +52,16 @@ export default function App() {
       setCorrectOrNot(true);
       setAnsweredQuestion((answeredQuestion) => answeredQuestion + 1);
       setAnswer("");
-      if (answeredQuestion + 1 === totalQuestion) {
+      console.log(answeredQuestion);
+      console.log(totalQuestion);
+      if (answeredQuestion + 1 > totalQuestion) {
+        setQuestions((q) => [...q, ...randomWords({ exactly: 1, maxLength: 10 })]);
+      } else if (answeredQuestion + 1 === totalQuestion) {
         clearInterval(timerId!);
         alert(`お疲れ様でした！${timer}秒で${totalQuestion}問中${(totalQuestion - incorrect.length)}問間違えずに正解しました！`);
         alert(`WPS: ${Math.floor(totalQuestion / timer * 10) / 10} LPS: ${Math.floor(questions.map(xx => xx.length).reduce((a,b) => a + b) / timer * 10) / 10}`)
         alert("リロードしてもう一度挑戦してみましょう！");
+        setQuestions((q) => [...q, ...randomWords({ exactly: 1, maxLength: 10 })]);
       }
     } else {
       setCorrectOrNot(false);
@@ -57,6 +74,7 @@ export default function App() {
   return (
     <>
       <main className="h-full font-sans bg-black text-white">
+        <UeAd />
         <div className="h-full grid place-items-center">
           <div className={`flex-col gap-16 items-center ${started ? "hidden":"flex"}`}>
             <section className="text-7xl pc:text-8xl text-center whitespace-nowrap">英単語<wbr />タイピング</section>
@@ -79,6 +97,7 @@ export default function App() {
             <p>{correctOrNot === null ? "ここに正誤判定が表示されます":correctOrNot ? "正解":"間違い"}</p>
           </div>
         </div>
+        <SitaAd />
       </main>
     </>
   );
